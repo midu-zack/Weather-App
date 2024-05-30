@@ -1,30 +1,36 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Weather from "./components/Weather";
+import Swal from "sweetalert2";
 
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
-  const [searchText, setSearchText] = useState("");
 
   const API_KEY = "fbf1d54f2383d12a9390a2902253b3ea";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`;
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
-      axios
-        .get(url)
-        .then((response) => {
-          setData(response.data);
-          setSearchText(location);
-        })
-        .catch((error) => {
-          console.error("Error fetching weather data:", error);
-          setData({ error: "Failed to fetch weather data. Please try again later." });
-        });
+      axios.get(url).then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      }).catch((error) => {
+        if (error.response && error.response.status === 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Invalid location entered!',
+          });
+        }
+      });
       setLocation("");
     }
+  };
+
+  const removeData = () => {
+    setData({});
   };
 
   return (
@@ -38,7 +44,10 @@ function App() {
           onChange={(event) => setLocation(event.target.value)}
           onKeyDown={searchLocation}
         />
-        {Object.keys(data).length > 0 && <Weather weatherData={data} searchText={searchText} />}
+        <Weather weatherData={data} />
+        {Object.keys(data).length !== 0 && (
+          <button className="remove-btn" onClick={removeData}>Remove</button>
+        )}
       </div>
     </div>
   );

@@ -1,10 +1,13 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-image: url(/public/images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.avif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .app-container {
@@ -12,32 +15,12 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-.center-container {
   text-align: center;
 }
 
-.search-input {
-  /* color: white; */
-  margin-bottom: 20px;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #898989;
-  /* background: transparent; */
-}
-
-
-.app-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 .center-container {
-  text-align: center;
+  width: 90%;
+  max-width: 800px;
 }
 
 .search-input {
@@ -47,34 +30,42 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  width: 350px; /* Fixed width for the search input */
+  height: auto; /* Auto height for the search input */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.remove-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #ff4757;
   color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.App-link {
-  color: #61dafb;
+.remove-btn:hover {
+  background-color: #e84118;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 768px) {
+  .search-input {
+    width: 90%; /* Responsive width for smaller screens */
   }
-  to {
-    transform: rotate(360deg);
+
+  .remove-btn {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-input {
+    width: 90%; /* Responsive width for smaller screens */
+  }
+
+  .remove-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 14px;
   }
 }
