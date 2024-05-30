@@ -20,7 +20,7 @@ function App() {
         if (error.response && error.response.status === 404) {
           Swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: '😐💔..!',
             text: 'Invalid location entered!',
           });
         }
